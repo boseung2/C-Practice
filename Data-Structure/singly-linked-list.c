@@ -9,6 +9,9 @@ typedef struct tagNode {
 } Node;
 
 Node* SLL_CreateNode(ElementType NewData) {
+  printf("%ld\n", sizeof(Node));
+  printf("%ld\n", sizeof(Node*));
+
   Node* NewNode = (Node*)malloc(sizeof(Node));
 
   NewNode->data = NewData;
@@ -17,12 +20,10 @@ Node* SLL_CreateNode(ElementType NewData) {
   return NewNode;
 }
 
-void free(void *memblock);
-
 void SLLDestroyNode(Node* Node) {
   free(Node);
 }
 
 int main() {
-  
+  Node* MyNode = SLL_CreateNode(117);
 }
