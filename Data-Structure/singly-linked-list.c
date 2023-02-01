@@ -50,9 +50,13 @@ Node* SLL_GetNodeAt(Node* Head, int Location) {
 
 int main() {
   Node* List = NULL;
+  Node* MyNode = NULL;
 
   SLL_AppendNode(&List, SLL_CreateNode(117));
   SLL_AppendNode(&List, SLL_CreateNode(119));
+
+  MyNode = SLL_GetNodeAt(List, 1);
+  printf("%d\n", MyNode->data);
 }
 
 // sizeof(Node) : 16
