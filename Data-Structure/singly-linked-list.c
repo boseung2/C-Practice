@@ -54,6 +54,7 @@ void SLL_RemoveNode(Node** Head, Node* Remove) {
   }
   else {
     Node* Current = *Head;
+
     while(Current != NULL && Current->NextNode != Remove) {
        Current = Current->NextNode;
     }
@@ -62,6 +63,11 @@ void SLL_RemoveNode(Node** Head, Node* Remove) {
       Current->NextNode = Remove->NextNode;
     }
   }
+}
+
+void SLL_InsertAfter(Node* Current, Node* NewNode) {
+  NewNode->NextNode = Current->NextNode;
+  Current->NextNode = NewNode;
 }
 
 int main() {
@@ -79,6 +85,11 @@ int main() {
   SLL_DestroyNode(MyNode);
 
   MyNode = SLL_GetNodeAt(List, 1);
+  printf("%d\n", MyNode->data);
+
+  SLL_InsertAfter(MyNode, SLL_CreateNode(311));
+
+  MyNode = SLL_GetNodeAt(List, 2);
   printf("%d\n", MyNode->data);
 }
 
