@@ -9,9 +9,6 @@ typedef struct tagNode {
 } Node;
 
 Node* SLL_CreateNode(ElementType NewData) {
-  printf("%ld\n", sizeof(Node)); // 16
-  printf("%ld\n", sizeof(Node*)); // 8
-
   Node* NewNode = (Node*)malloc(sizeof(Node));
 
   NewNode->data = NewData;
@@ -20,10 +17,47 @@ Node* SLL_CreateNode(ElementType NewData) {
   return NewNode;
 }
 
-void SLLDestroyNode(Node* Node) {
+void SLL_DestroyNode(Node* Node) {
   free(Node);
 }
 
-int main() {
-  Node* MyNode = SLL_CreateNode(117);
+void SLL_AppendNode(Node** Head, Node* NewNode) {
+  // Head가 없다면 NewNode를 Head로 지정한다.
+  if((*Head) == NULL) {
+    *Head = NewNode;
+  } 
+  // Head가 있다면 Tail의 NextNode를 NewNode로 지정한다.
+  else {
+    Node* Tail = (*Head);
+    while(Tail->NextNode != NULL) {
+      Tail = Tail->NextNode;
+    }    
+    Tail->NextNode = NewNode;
+  }
 }
+
+Node* SLL_GetNodeAt(Node* Head, int Location) {
+  Node* Current = Head;
+  
+  while(Current != NULL && (--Location) >= 0) {
+    Current =Current->NextNode;
+  }
+
+  return Current;
+}
+
+int main() {
+  Node* List = NULL;
+  Node* NewNode = NULL;
+
+  NewNode = SLL_CreateNode(117);
+  SLL_AppendNode(&List, NewNode);
+
+  NewNode = SLL_CreateNode(119);
+  SLL_AppendNode(&List, NewNode);
+}
+
+// sizeof(Node) : 16
+// sizeof(Node*) : 8
+// printf("%ld\n", sizeof(Node));
+// printf("%ld\n", sizeof(Node*));
