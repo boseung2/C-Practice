@@ -70,6 +70,18 @@ void SLL_InsertAfter(Node* Current, Node* NewNode) {
   Current->NextNode = NewNode;
 }
 
+int SLL_GetNodeCount(Node* Head) {
+  int Count = 0;
+  Node* Current = Head;
+
+  while(Current !=  NULL) {
+    Current = Current->NextNode;
+    Count++;
+  }
+
+  return Count;
+}
+
 int main() {
   Node* List = NULL;
   Node* MyNode = NULL;
@@ -91,6 +103,9 @@ int main() {
 
   MyNode = SLL_GetNodeAt(List, 2);
   printf("%d\n", MyNode->data);
+
+  int count = SLL_GetNodeCount(List);
+  printf("%d\n", count);
 }
 
 // sizeof(Node) : 16
